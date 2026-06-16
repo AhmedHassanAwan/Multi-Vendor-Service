@@ -8,7 +8,9 @@ import authRoutes from './routes/authRoutes.js';
 import providerRoutes from './routes/providerRoutes.js';
 import serviceRoutes from './routes/serviceRoutes.js';
 import requestRoutes from './routes/requestRoutes.js';
+import projectRoutes from './routes/projectRoutes.js';
 import HTTP_STATUS from './utils/httpStatusCodes.js';
+
 
 
 connectDB();
@@ -22,6 +24,8 @@ app.use('/api/auth', authRoutes);
 app.use('/api/provider', providerRoutes);
 app.use('/api/services', serviceRoutes);
 app.use('/api/requests', requestRoutes);
+app.use('/api/projects', projectRoutes);
+
 
 
 
