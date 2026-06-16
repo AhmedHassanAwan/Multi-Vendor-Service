@@ -11,18 +11,13 @@ import requestRoutes from './routes/requestRoutes.js';
 import HTTP_STATUS from './utils/httpStatusCodes.js';
 
 
-// Environment variables configuration
-
-// Connect to MongoDB
 connectDB();
 
 const app = express();
 
-// Middlewares
 app.use(cors());
 app.use(express.json());
 
-// Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/provider', providerRoutes);
 app.use('/api/services', serviceRoutes);

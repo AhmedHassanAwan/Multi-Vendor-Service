@@ -4,16 +4,11 @@ import Project from '../models/Project.js';
 import { createRequestSchema } from '../validators/requestValidator.js';
 import HTTP_STATUS from '../utils/httpStatusCodes.js';
 
-/**
- * @desc    Create a new service request
- * @route   POST /api/requests/:serviceId
- * @access  Protected + Customer
- */
+
 export const createRequest = async (req, res) => {
   try {
     const { serviceId } = req.params;
 
-    // Check if service exists and is active
     const service = await Service.findOne({ _id: serviceId, isActive: true });
     if (!service) {
       return res.status(HTTP_STATUS.NOT_FOUND).json({
@@ -22,7 +17,6 @@ export const createRequest = async (req, res) => {
       });
     }
 
-    // Customer cannot request their own service
     if (service.provider.toString() === req.user._id.toString()) {
       return res.status(HTTP_STATUS.BAD_REQUEST).json({
         success: false,
@@ -42,7 +36,6 @@ export const createRequest = async (req, res) => {
       });
     }
 
-    // Check for existing pending request
     const existingRequest = await ServiceRequest.findOne({
       customer: req.user._id,
       service: serviceId,
@@ -86,11 +79,7 @@ export const createRequest = async (req, res) => {
   }
 };
 
-/**
- * @desc    Get current customer's requests
- * @route   GET /api/requests/my-requests
- * @access  Protected + Customer
- */
+
 export const getMyRequestsAsCustomer = async (req, res) => {
   try {
     const requests = await ServiceRequest.find({ customer: req.user._id })
@@ -112,11 +101,7 @@ export const getMyRequestsAsCustomer = async (req, res) => {
   }
 };
 
-/**
- * @desc    Get requests received by provider
- * @route   GET /api/requests/provider-requests
- * @access  Protected + Provider
- */
+
 export const getProviderRequests = async (req, res) => {
   try {
     const { status } = req.query;
@@ -142,11 +127,7 @@ export const getProviderRequests = async (req, res) => {
   }
 };
 
-/**
- * @desc    Update request status (Accept/Reject)
- * @route   PUT /api/requests/:requestId/status
- * @access  Protected + Provider
- */
+
 export const updateRequestStatus = async (req, res) => {
   try {
     const { requestId } = req.params;
@@ -205,11 +186,7 @@ export const updateRequestStatus = async (req, res) => {
   }
 };
 
-/**
- * @desc    Get single request details
- * @route   GET /api/requests/:requestId
- * @access  Protected (Customer or Provider)
- */
+
 export const getSingleRequest = async (req, res) => {
   try {
     const { requestId } = req.params;

@@ -39,8 +39,7 @@ const serviceRequestSchema = new mongoose.Schema(
   {
     timestamps: true,
   }
-)
-
+);
 const ServiceRequest = mongoose.model('ServiceRequest', serviceRequestSchema)
 
 export default ServiceRequest

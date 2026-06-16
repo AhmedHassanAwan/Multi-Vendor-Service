@@ -2,18 +2,13 @@ import { z } from 'zod';
 import User from '../models/User.js';
 import HTTP_STATUS from '../utils/httpStatusCodes.js';
 
-// Zod Schema for provider profile
 const profileSchema = z.object({
   bio: z.string({ required_error: "Bio is required" }).min(20, "Bio must be at least 20 characters"),
   skills: z.array(z.string()).min(1, "At least one skill is required"),
   experience: z.string({ required_error: "Experience is required" }).min(5, "Experience must be at least 5 characters"),
 });
 
-/**
- * @desc    Initialize provider profile
- * @route   PUT /api/provider/setup-profile
- * @access  Protected + Provider
- */
+
 export const setupProfile = async (req, res) => {
   try {
     const parsed = profileSchema.safeParse(req.body);
