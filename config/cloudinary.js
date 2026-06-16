@@ -30,6 +30,13 @@ export const uploadPortfolio = multer({
   limits: { fileSize: 2 * 1024 * 1024 },
 }).array('portfolio', 5);
 
+export const uploadServiceImage = multer({
+  storage,
+  fileFilter,
+  limits: { fileSize: 3 * 1024 * 1024 } // 3MB
+}).single('serviceImage');
+
+
  export const uploadToCloudinary = async (buffer, folder) => {
   return new Promise((resolve, reject) => {
     // Buffer ko base64 mein convert karo

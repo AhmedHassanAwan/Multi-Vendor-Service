@@ -26,9 +26,14 @@ const serviceSchema = new mongoose.Schema(
       required: true,
     },
     deliveryTime: {
-      type: Number, // din mein
+      type: Number,
       required: true,
     },
+    serviceImage: {
+      type: String,
+      default: '',
+    },
+
     averageRating: {
       type: Number,
       default: 0,

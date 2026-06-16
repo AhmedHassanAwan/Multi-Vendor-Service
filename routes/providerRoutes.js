@@ -1,22 +1,14 @@
 
 import express from 'express';
-import {
-  uploadProfilePictureController,
-  uploadPortfolioController,
-  deletePortfolioImage
-} from '../controllers/uploadController.js';
-import {
-  setupProfile,
-  getProfile,
-  updateProfile
-} from '../controllers/providerController.js';
+import {uploadProfilePictureController,uploadPortfolioController,deletePortfolioImage} from '../controllers/uploadController.js';
+import {setupProfile,getProfile,updateProfile} from '../controllers/providerController.js';
 import { uploadProfilePicture, uploadPortfolio } from '../config/cloudinary.js';
 import { protect, authorizeRoles } from '../middleware/authMiddleware.js';
 import HTTP_STATUS from '../utils/httpStatusCodes.js';
 
 const router = express.Router();
 
-// Provider Profile Routes
+
 router.put('/setup-profile', protect, authorizeRoles('provider'), setupProfile);
 router.get('/profile', protect, authorizeRoles('provider'), getProfile);
 router.put('/update-profile', protect, authorizeRoles('provider'), updateProfile);
