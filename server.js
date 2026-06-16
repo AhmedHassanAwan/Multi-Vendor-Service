@@ -10,7 +10,9 @@ import serviceRoutes from './routes/serviceRoutes.js';
 import requestRoutes from './routes/requestRoutes.js';
 import projectRoutes from './routes/projectRoutes.js';
 import reviewRoutes from './routes/reviewRoutes.js';
+import dashboardRoutes from './routes/dashboardRoutes.js';
 import HTTP_STATUS from './utils/httpStatusCodes.js';
+
 
 
 
@@ -28,6 +30,8 @@ app.use('/api/services', serviceRoutes);
 app.use('/api/requests', requestRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/reviews', reviewRoutes);
+app.use('/api/dashboard', dashboardRoutes);
+
 
 
 
