@@ -4,11 +4,6 @@ import ServiceRequest from '../models/ServiceRequest.js';
 import Project from '../models/Project.js';
 import HTTP_STATUS from '../utils/httpStatusCodes.js';
 
-/**
- * @desc    Get customer dashboard metrics
- * @route   GET /api/dashboard/customer
- * @access  Protected + Customer
- */
 export const getCustomerDashboard = async (req, res) => {
   try {
     const customerId = req.user._id;
