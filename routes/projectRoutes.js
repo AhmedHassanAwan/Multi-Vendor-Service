@@ -10,18 +10,14 @@ import {
 
 const router = express.Router();
 
-// Stats route — admin only
 router.get('/stats', protect, authorizeRoles('admin'), getProjectStats);
 
-// Customer routes
 router.get('/my-projects', protect, authorizeRoles('customer'), getMyProjectsAsCustomer);
 
-// Provider routes
 router.get('/provider-projects', protect, authorizeRoles('provider'), getMyProjectsAsProvider);
 
 router.put('/:projectId/status', protect, authorizeRoles('provider'), updateProjectStatus);
 
-// Both customer and provider
 router.get('/:projectId', protect, getSingleProject);
 
 export default router;

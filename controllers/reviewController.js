@@ -4,7 +4,7 @@ import Service from '../models/Service.js';
 import { createReviewSchema } from '../validators/reviewValidator.js';
 import HTTP_STATUS from '../utils/httpStatusCodes.js';
 
-// Helper function to update service rating
+
 const updateServiceRating = async (serviceId) => {
   const reviews = await Review.find({ service: serviceId });
   const totalReviews = reviews.length;
@@ -23,11 +23,7 @@ const updateServiceRating = async (serviceId) => {
   return { averageRating, totalReviews };
 };
 
-/**
- * @desc    Create a new review
- * @route   POST /api/reviews/:projectId
- * @access  Protected + Customer
- */
+
 export const createReview = async (req, res) => {
   try {
     const { projectId } = req.params;
