@@ -14,10 +14,10 @@ const router = express.Router();
 
 
 router.get('/', getAllServices);
-router.get('/:id', getSingleService);
-
 
 router.get('/my-services', protect, authorizeRoles('provider'), getMyServices);
+
+router.get('/:id', getSingleService);
 
 router.post('/',protect,authorizeRoles('provider'),(req, res, next) => {
     uploadServiceImage(req, res, (err) => {
