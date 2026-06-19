@@ -21,11 +21,17 @@ connectDB();
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'https://multi-vendor-service-frontend.vercel.app'
+  ],
+  credentials: true
+}));
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
-app.use('/api/provider', providerRoutes);
+app.use('/api/provider', providerRoutes); 
 app.use('/api/services', serviceRoutes);
 app.use('/api/requests', requestRoutes);
 app.use('/api/projects', projectRoutes);
